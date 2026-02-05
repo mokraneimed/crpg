@@ -1,80 +1,88 @@
-/* 1. Reset */
-* {
+/* 1. Force the whole page to be a centered box */
+html, body {
   margin: 0;
   padding: 0;
-  box-sizing: border-box;
-}
-
-/* 2. The Main Wrapper */
-.container {
-  /* Use flexbox to center everything perfectly */
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #ffffff; /* Fallback */
+}
+
+/* 2. The Background Container */
+.container {
+  position: fixed; /* Keeps it locked to the screen */
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh; /* The iPhone Chrome fix */
   
-  /* Full screen height */
-  width: 100%;
-  height: 100vh;      /* PC Standard */
-  height: 100svh;     /* Modern Mobile Standard (Small Viewport Height) */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
   
   background-color: #ffffff;
-  transition: background-color 0.8s ease-in-out;
-  position: relative;
-  overflow: hidden; /* Keeps falling hearts inside */
-  padding: 20px;
+  transition: background-color 0.8s ease;
+  overflow: hidden;
 }
 
 .pink-bg {
   background-color: #ffdae0;
 }
 
-/* 3. Content Area - No fixed heights here! */
+/* 3. The Content - The "True Center" Fix */
 .content {
   position: relative;
   z-index: 10;
+  
+  /* These 3 lines fix the "Left Align" issue on PC */
   display: flex;
   flex-direction: column;
-  align-items: center;
-  text-align: center;
-  max-width: 600px; /* Keeps text from getting too wide on PC */
-}
-
-/* 4. Text Styling */
-h1 {
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-  color: #000;
-  font-size: clamp(1.8rem, 5vw, 3rem); /* Smoothly scales from mobile to PC */
-  margin-bottom: 20px;
-  line-height: 1.2;
-}
-
-/* 5. Image Styling (Responsive & High Quality) */
-.main-image {
-  /* Desktop size */
-  width: 350px; 
-  height: 350px;
+  align-items: center; 
+  margin: 0 auto; 
   
+  width: 100%;
+  text-align: center;
+}
+
+/* 4. Text - Clamp makes it responsive */
+h1 {
+  font-family: sans-serif;
+  color: #000;
+  font-size: clamp(1.8rem, 8vw, 3rem); 
+  margin: 0 0 20px 0;
+  padding: 0 15px;
+  width: 100%;
+}
+
+/* 5. Fixed Images - No Squishing */
+.main-image {
+  width: 320px;  /* Fixed length as requested */
+  height: 320px; /* Fixed height */
   object-fit: cover;
   border-radius: 20px;
-  margin-bottom: 25px;
   border: 6px solid white;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-  
-  /* Fixes jagged/sharp edges */
+  margin-bottom: 20px;
+
+  /* Image Smoothing */
   image-rendering: -webkit-optimize-contrast;
   image-rendering: high-quality;
-  transform: translateZ(0);
 }
 
 /* 6. Buttons */
 .buttons {
   display: flex;
-  gap: 20px;
   justify-content: center;
+  gap: 20px;
+  width: 100%;
 }
 
 button {
-  padding: 15px 40px;
+  padding: 15px 35px;
   font-size: 1.2rem;
   font-weight: bold;
   cursor: pointer;
@@ -82,8 +90,7 @@ button {
   border-radius: 50px;
   background-color: #333;
   color: white;
-  transition: all 0.2s ease;
-  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  transition: transform 0.2s ease;
 }
 
 .yes-btn {
@@ -92,29 +99,9 @@ button {
 
 button:hover {
   transform: scale(1.1);
-  box-shadow: 0 6px 15px rgba(0,0,0,0.2);
 }
 
-/* 7. MOBILE ADJUSTMENTS (iPhone & Android) */
-@media (max-width: 600px) {
-  .main-image {
-    /* Slightly smaller for mobile screens */
-    width: 280px;
-    height: 280px;
-  }
-  
-  h1 {
-    font-size: 2rem;
-    margin-bottom: 15px;
-  }
-
-  button {
-    padding: 12px 30px;
-    font-size: 1.1rem;
-  }
-}
-
-/* 8. Falling Animations */
+/* 7. Animations - Locked to background */
 .animations {
   position: absolute;
   top: 0;
@@ -127,11 +114,19 @@ button:hover {
 .heart, .flower {
   position: absolute;
   top: -50px;
-  font-size: 2rem;
+  font-size: 2.5rem;
   animation: fall 4s linear infinite;
 }
 
 @keyframes fall {
   0% { transform: translateY(0) rotate(0deg); opacity: 1; }
   100% { transform: translateY(110vh) rotate(360deg); opacity: 0; }
+}
+
+/* 8. Extra Small Screens (Small Phones) */
+@media (max-width: 350px) {
+  .main-image {
+    width: 250px;
+    height: 250px;
+  }
 }

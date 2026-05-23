@@ -17,7 +17,7 @@ function App() {
     {
       question: "chkon li ychtiha imedha bzaaaaaaaaaaaaaaaaaaaaaf ?",
       wrongText: "MKANCH WHDOKHRA !!!!",
-      correctBtn: "Hanaou ❤️", // "Of course"
+      correctBtn: "Hananou ❤️", // "Of course"
       wrongBtn: "W7dokhra"
     },
     {

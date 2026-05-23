@@ -43,22 +43,29 @@ html, body {
   flex-direction: column;
   align-items: center; 
   margin: 0 auto; 
-  
-  padding: 0 20px; 
-  box-sizing: border-box; 
+
+
 
   width: 100%;
   text-align: center;
 }
 
 /* 4. Text - Clamp makes it responsive */
+/* 4. Text - Clamp makes it responsive */
 h1 {
   font-family: sans-serif;
   color: #000;
-  font-size: clamp(1.8rem, 8vw, 3rem); 
+  font-size: clamp(1.5rem, 7vw, 2.8rem); /* Slightly adjusted for better mobile fit */
   margin: 0 0 20px 0;
-  padding: 0 15px;
+  
+  /* PADDING & SIZING FIX */
   width: 100%;
+  padding: 0 20px;
+  box-sizing: border-box; /* Ensures padding pushes INWARD, not outward */
+  
+  /* THE FIX FOR EXTRA LONG WORDS */
+  overflow-wrap: break-word; /* Breaks words like bzaaaaaaaf onto the next line */
+  word-break: break-word;
 }
 
 /* 5. Fixed Images - No Squishing */

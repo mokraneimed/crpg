@@ -60,9 +60,9 @@ h1 {
 
 /* 5. Fixed Images - No Squishing */
 .main-image {
-  width: 320px;  /* Fixed length as requested */
-  height: 320px; /* Fixed height */
-  object-fit: cover;
+  width: 250px;  /* Fixed length as requested */
+  height: 380px; /* Fixed height */
+  
   border-radius: 20px;
   border: 6px solid white;
   box-shadow: 0 10px 30px rgba(0,0,0,0.1);
